@@ -18,5 +18,11 @@
     <ClCompile Include="Binary Expression Tree.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PostfixEvalTree.h">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PostfixEvalTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

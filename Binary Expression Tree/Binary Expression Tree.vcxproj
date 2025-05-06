@@ -128,6 +128,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Binary Expression Tree.cpp" />
+    <ClCompile Include="PostfixEvalTree.cpp" />
+    <ClCompile Include="PostfixEvalTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
