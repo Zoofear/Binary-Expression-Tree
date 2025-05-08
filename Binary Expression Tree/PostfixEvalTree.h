@@ -10,10 +10,8 @@ struct node
 	std::string data;
 	node* left = nullptr;
 	node* right = nullptr;
-	node(std::string x)
-	{
-		data = x;
-	}
+	node(std::string x) :data(x) {}
+	
 };
 //node struct for the binary tree
 
@@ -21,21 +19,49 @@ class PostfixEval
 {
 public:
 
-	PostfixEval(std::string input) :root(nullptr), start(input) { tokenizer(); } //constructor that initializes the tree by setting a root node to nullptr
+	PostfixEval(const std::string& input) :root(nullptr), start(input) {} //constructor that initializes the tree by setting a root node to nullptr
 	
+
+
 	void createPostfixTree()					//Function overload
 	{
-		createPostfixTree(root);
-	}
+		std::cout << "hello\n";
 
-	void tokenizer()						//Creates the list of tokens to use.
-	{
 		std::istringstream ss(start);
+
+		while (ss >> token)
+		{
+			std::cout << token;
+		}
+		
+		createPostfixTree(ss);
+		
+		/*if (isTreeEmpty() == true)
+		{
+			std::cout << "Your tree is not empty, please delete it\n";
+			return nullptr;
+		}
+		else if (isTreeEmpty() == false)
+		{
+			createPostfixTree(ss);
+		}*/
+
+		return;
 	}
 
 	void deleteTree();			//Deletes the tree and sets the root back to nullptr
 
-	bool isTreeEmpty();			//Returns true if tree is full, false if it is empty
+	bool isTreeEmpty()			//Returns true if tree is full, false if it is empty
+	{
+		if (root->left == nullptr && root->right == nullptr)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
 
 	void infixTraversal()
 	{
@@ -51,12 +77,11 @@ public:
 
 private:
 	
-	void createPostfixTree(node* root);		//Creates a binary expression tree based off of the postfix expression stored in the string start.;	//Function Overload
+	node* createPostfixTree(std::istringstream& ss);		//Creates a binary expression tree based off of the postfix expression stored in the string start.;	//Function Overload
 
-	void infixTraversal(node* root); //returns a expression in infix form by traversing through the tree in order
+	void infixTraversal(const node* root); //returns a expression in infix form by traversing through the tree in order
 
 	int stringstreamiterator = 0;
-	std::istringstream ss;
 	std::string start;
 	double output;
 	std::string token;

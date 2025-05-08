@@ -1,21 +1,30 @@
 #include "PostfixEvalTree.h"
 
-void PostfixEval::createPostfixTree(node* root)
+node* PostfixEval::createPostfixTree( std::istringstream& ss)
 {
 	if (!ss)
 	{
-		return;
+		std::cout << "AHHHHHHHHHHHHHHHHHHHH ";
+		return nullptr;
 	}
-	if (std::isdigit(token[0]) || (token[0] == '-' || token[0] == '.') && token.length() > 1)
+	if (ss >> token)
 	{
-		root->data = token;
-		root->left = nullptr;
-		root->right = nullptr;
+		if (std::isdigit(token[0]) || (token[0] == '-' || token[0] == '.') && token.length() > 1)
+		{
+			return new node(token);
+
+			std::cout << token << " ";
+		}
+		else if (token == "^" || token == "+" || token == "-" || token == "*" || token == "/")
+		{
+			node* rightst = createPostfixTree(ss);
+			node* leftst = createPostfixTree(ss);
+			root = new node(token);
+			root->right = rightst;
+			root->left = leftst;
+			return root;
+			std::cout << token << " ";
+		}
 	}
-	else if (token == "^" || token == "+" || token == "-" || token == "*" || token == "/")
-	{
-		root->data = token;
-		createPostfixTree(root->left);
-		createPostfixTree(root->right);
-	}
+	return nullptr;
 }
