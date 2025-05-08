@@ -29,11 +29,6 @@ public:
 
 		std::istringstream ss(start);
 
-		while (ss >> token)
-		{
-			std::cout << token;
-		}
-		
 		createPostfixTree(ss);
 		
 		/*if (isTreeEmpty() == true)
